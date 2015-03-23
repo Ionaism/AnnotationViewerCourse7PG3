@@ -5,6 +5,8 @@
  */
 package annotationviewerpg3;
 
+import java.awt.BorderLayout;
+import java.awt.Component;
 import java.io.*;
 import javax.swing.*;
 
@@ -18,6 +20,8 @@ public class CreateGUI extends javax.swing.JFrame {
      * Creates new form CreateGUI
      */
     private JFileChooser fileChoose;
+    private Component emptyLabel;
+    private Component frame;
     
     public CreateGUI() {
         initComponents();
@@ -167,6 +171,11 @@ public class CreateGUI extends javax.swing.JFrame {
         jMenu5.setText("Help");
 
         jMenuItem15.setText("Open Help Document");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem15);
 
         jMenuBar1.add(jMenu5);
@@ -215,7 +224,12 @@ public class CreateGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
+        try {
+            undo.undo();
+        } catch (CannotRedoException cre) {
+            cre.printStackTrace();
+        }
+ }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
@@ -229,6 +243,13 @@ public class CreateGUI extends javax.swing.JFrame {
     private void closeViewerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeViewerActionPerformed
         System.exit(0);
     }//GEN-LAST:event_closeViewerActionPerformed
+
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        JOptionPane.showMessageDialog(frame,
+        "Raadpleeg de manual!",
+        "Help",
+        JOptionPane.PLAIN_MESSAGE);
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     /**
      * @param args the command line arguments
