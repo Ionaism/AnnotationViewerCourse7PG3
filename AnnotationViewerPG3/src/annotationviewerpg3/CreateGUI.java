@@ -8,6 +8,8 @@ package annotationviewerpg3;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -46,7 +48,9 @@ public class CreateGUI extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
-        jMenuItem16 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         closeViewer = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -91,8 +95,14 @@ public class CreateGUI extends javax.swing.JFrame {
 
         jMenu9.setText("Save All Entries As");
 
-        jMenuItem16.setText("Text File");
-        jMenu9.add(jMenuItem16);
+        jMenuItem1.setText("FASTA File");
+        jMenu9.add(jMenuItem1);
+
+        jMenuItem2.setText("GFF File");
+        jMenu9.add(jMenuItem2);
+
+        jMenuItem10.setText("Genbank File");
+        jMenu9.add(jMenuItem10);
 
         jMenu1.add(jMenu9);
 
@@ -206,13 +216,36 @@ public class CreateGUI extends javax.swing.JFrame {
     private void fileChooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileChooserActionPerformed
         File selectedFile;
         int reply;
-        
+        BufferedReader inFile;
+        String line;
+        String sequence = "";
         fileChoose = new JFileChooser();
+        boolean seqStart = false;
         reply = fileChoose.showOpenDialog(this);
         if (reply == JFileChooser.APPROVE_OPTION) {
             selectedFile = fileChoose.getSelectedFile();
             String fileName = selectedFile.getAbsolutePath();
+            try {
+                inFile = new BufferedReader(new FileReader(fileName));
+                
+                    while ((line = inFile.readLine()) != null) {
+                        if (seqStart == true){
+                            sequence = sequence + line;
+                        }
+                        if (line.contains(">") == true){
+                            seqStart = true;
+                        }
+                    }
+                System.out.println(sequence);
+                inFile.close();
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(CreateGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            catch (IOException ex) {
+                    Logger.getLogger(CreateGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+    
     }//GEN-LAST:event_fileChooserActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -291,12 +324,14 @@ public class CreateGUI extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
-    private javax.swing.JMenuItem jMenuItem16;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
