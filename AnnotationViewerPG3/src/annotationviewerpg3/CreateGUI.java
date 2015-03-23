@@ -40,7 +40,8 @@ public class CreateGUI extends javax.swing.JFrame {
 
         jMenuItem6 = new javax.swing.JMenuItem();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        sequencePane = new javax.swing.JScrollPane();
+        sequenceArea = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -73,6 +74,13 @@ public class CreateGUI extends javax.swing.JFrame {
         jMenuItem6.setText("jMenuItem6");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        sequencePane.setBackground(new java.awt.Color(255, 255, 255));
+
+        sequenceArea.setColumns(20);
+        sequenceArea.setFont(new java.awt.Font("Monospaced", 0, 24)); // NOI18N
+        sequenceArea.setRows(5);
+        sequencePane.setViewportView(sequenceArea);
 
         jMenu1.setText("File");
 
@@ -197,7 +205,7 @@ public class CreateGUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
-            .addComponent(jScrollPane2)
+            .addComponent(sequencePane)
             .addComponent(jScrollPane3)
         );
         layout.setVerticalGroup(
@@ -205,7 +213,7 @@ public class CreateGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(sequencePane, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE))
         );
@@ -244,6 +252,9 @@ public class CreateGUI extends javax.swing.JFrame {
             catch (IOException ex) {
                     Logger.getLogger(CreateGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
+            String secondFrameSequence = sequence.substring(1, sequence.length());
+            String thirdFrameSequence = sequence.substring(2, sequence.length());
+            sequenceArea.setText(sequence + "\n \n" + secondFrameSequence + "\n \n" + thirdFrameSequence);
         }
     
     }//GEN-LAST:event_fileChooserActionPerformed
@@ -340,11 +351,12 @@ public class CreateGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
+    private javax.swing.JTextArea sequenceArea;
+    private javax.swing.JScrollPane sequencePane;
     // End of variables declaration//GEN-END:variables
 }
