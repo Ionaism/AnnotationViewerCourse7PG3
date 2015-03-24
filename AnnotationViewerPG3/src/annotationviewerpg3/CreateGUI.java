@@ -300,7 +300,13 @@ public class CreateGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        // TODO add your handling code here:
+     
+        String selectedSeq = proteinSequenceArea1.getSelectedText();
+        System.out.println(selectedSeq);
+        if (selectedSeq == null){
+            selectedSeq = proteinSequenceArea2.getSelectedText();
+        }
+        System.out.println(selectedSeq);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
