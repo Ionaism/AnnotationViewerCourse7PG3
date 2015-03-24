@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
- *
+ *.
  * @author Rowan
  */
 public class CreateGUI extends javax.swing.JFrame {

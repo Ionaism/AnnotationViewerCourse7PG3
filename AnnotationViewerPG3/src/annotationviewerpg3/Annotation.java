@@ -8,7 +8,7 @@ package annotationviewerpg3;
 import java.util.ArrayList;
 
 /**
- *
+ *.
  * @author Rowan
  */
 public class Annotation {

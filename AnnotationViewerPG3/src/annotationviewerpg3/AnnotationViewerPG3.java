@@ -6,7 +6,7 @@
 package annotationviewerpg3;
 
 /**
- *
+ *.
  * @author Rowan
  */
 public class AnnotationViewerPG3 {

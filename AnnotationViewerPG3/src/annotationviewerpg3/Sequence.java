@@ -8,7 +8,7 @@ package annotationviewerpg3;
 import java.util.HashMap;
 
 /**
- *
+ *.
  * @author Rowan
  */
 public class Sequence {

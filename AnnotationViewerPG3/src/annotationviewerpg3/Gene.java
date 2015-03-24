@@ -6,7 +6,7 @@
 package annotationviewerpg3;
 
 /**
- *
+ *.
  * @author Rowan
  */
 public class Gene extends Annotation {
