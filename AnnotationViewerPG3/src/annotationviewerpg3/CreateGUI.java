@@ -41,8 +41,12 @@ public class CreateGUI extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jScrollPane1 = new javax.swing.JScrollPane();
         sequencePane = new javax.swing.JScrollPane();
-        sequenceArea = new javax.swing.JTextArea();
+        proteinSequenceArea1 = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        nucleotideSequenceArea = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        proteinSequenceArea2 = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         fileChooser = new javax.swing.JMenuItem();
@@ -77,10 +81,19 @@ public class CreateGUI extends javax.swing.JFrame {
 
         sequencePane.setBackground(new java.awt.Color(255, 255, 255));
 
-        sequenceArea.setColumns(20);
-        sequenceArea.setFont(new java.awt.Font("Monospaced", 0, 24)); // NOI18N
-        sequenceArea.setRows(5);
-        sequencePane.setViewportView(sequenceArea);
+        proteinSequenceArea1.setColumns(20);
+        proteinSequenceArea1.setFont(new java.awt.Font("Monospaced", 0, 20)); // NOI18N
+        proteinSequenceArea1.setRows(3);
+        sequencePane.setViewportView(proteinSequenceArea1);
+
+        nucleotideSequenceArea.setColumns(20);
+        nucleotideSequenceArea.setRows(2);
+        jScrollPane2.setViewportView(nucleotideSequenceArea);
+
+        proteinSequenceArea2.setColumns(20);
+        proteinSequenceArea2.setFont(new java.awt.Font("Monospaced", 0, 20)); // NOI18N
+        proteinSequenceArea2.setRows(3);
+        jScrollPane4.setViewportView(proteinSequenceArea2);
 
         jMenu1.setText("File");
 
@@ -207,15 +220,21 @@ public class CreateGUI extends javax.swing.JFrame {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
             .addComponent(sequencePane)
             .addComponent(jScrollPane3)
+            .addComponent(jScrollPane2)
+            .addComponent(jScrollPane4)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(sequencePane, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(sequencePane, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -236,7 +255,7 @@ public class CreateGUI extends javax.swing.JFrame {
             try {
                 inFile = new BufferedReader(new FileReader(fileName));
                 
-                    while ((line = inFile.readLine()) != null) {
+                    while ((line = inFile.readLine()) != null) {                      
                         if (seqStart == true){
                             sequence = sequence + line;
                         }
@@ -244,7 +263,6 @@ public class CreateGUI extends javax.swing.JFrame {
                             seqStart = true;
                         }
                     }
-                System.out.println(sequence);
                 inFile.close();
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(CreateGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -252,9 +270,20 @@ public class CreateGUI extends javax.swing.JFrame {
             catch (IOException ex) {
                     Logger.getLogger(CreateGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
+            String firstFrameProtein = Sequence.getTranslation(sequence);
             String secondFrameSequence = sequence.substring(1, sequence.length());
+            String secondFrameProtein = Sequence.getTranslation(secondFrameSequence);
             String thirdFrameSequence = sequence.substring(2, sequence.length());
-            sequenceArea.setText(sequence + "\n \n" + secondFrameSequence + "\n \n" + thirdFrameSequence);
+            String thirdFrameProtein = Sequence.getTranslation(thirdFrameSequence);
+            String complementSeq = sequence.replace("A", "1");
+            complementSeq = complementSeq.replace("G", "2");
+            complementSeq = complementSeq.replace("T", "A");
+            complementSeq = complementSeq.replace("C", "G");
+            complementSeq = complementSeq.replace("1", "T");
+            complementSeq = complementSeq.replace("2", "C");
+            proteinSequenceArea1.setText(firstFrameProtein + "\n" + secondFrameProtein + "\n" + thirdFrameProtein);
+            nucleotideSequenceArea.setText(sequence + "\n" + complementSeq);
+            proteinSequenceArea2.setText(new StringBuilder(firstFrameProtein).reverse().toString() + "\n" + new StringBuilder(secondFrameProtein).reverse().toString() + "\n" + new StringBuilder(thirdFrameProtein).reverse().toString());
         }
     
     }//GEN-LAST:event_fileChooserActionPerformed
@@ -351,12 +380,16 @@ public class CreateGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
-    private javax.swing.JTextArea sequenceArea;
+    private javax.swing.JTextArea nucleotideSequenceArea;
+    private javax.swing.JTextArea proteinSequenceArea1;
+    private javax.swing.JTextArea proteinSequenceArea2;
     private javax.swing.JScrollPane sequencePane;
     // End of variables declaration//GEN-END:variables
 }
