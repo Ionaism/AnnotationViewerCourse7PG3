@@ -5,7 +5,6 @@
  */
 package annotationviewerpg3;
 
-import java.awt.BorderLayout;
 import java.awt.Component;
 import java.io.*;
 import java.util.logging.Level;
@@ -348,6 +347,7 @@ public class CreateGUI extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new CreateGUI().setVisible(true);
             }
