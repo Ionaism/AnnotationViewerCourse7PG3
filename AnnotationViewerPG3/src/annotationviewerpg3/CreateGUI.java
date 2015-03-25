@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
- *.
+ * .
  * @author Rowan
  */
 public class CreateGUI extends javax.swing.JFrame {
@@ -21,9 +21,8 @@ public class CreateGUI extends javax.swing.JFrame {
      * Creates new form CreateGUI
      */
     private JFileChooser fileChoose;
-    private Component emptyLabel;
     private Component frame;
-    
+
     public CreateGUI() {
         initComponents();
     }
@@ -46,6 +45,9 @@ public class CreateGUI extends javax.swing.JFrame {
         nucleotideSequenceArea = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
         proteinSequenceArea2 = new javax.swing.JTextArea();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        proteinAreaToggle = new javax.swing.JToggleButton();
+        nucleotideAreaToggle = new javax.swing.JToggleButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         fileChooser = new javax.swing.JMenuItem();
@@ -63,12 +65,12 @@ public class CreateGUI extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jMenuItem7 = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        createAnnotation = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem13 = new javax.swing.JMenuItem();
+        highlightSeqGC = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
@@ -83,6 +85,16 @@ public class CreateGUI extends javax.swing.JFrame {
         proteinSequenceArea1.setColumns(20);
         proteinSequenceArea1.setFont(new java.awt.Font("Monospaced", 0, 20)); // NOI18N
         proteinSequenceArea1.setRows(3);
+        proteinSequenceArea1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                proteinSequenceArea1MouseDragged(evt);
+            }
+        });
+        proteinSequenceArea1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                proteinSequenceArea1MouseClicked(evt);
+            }
+        });
         sequencePane.setViewportView(proteinSequenceArea1);
 
         nucleotideSequenceArea.setColumns(20);
@@ -93,6 +105,22 @@ public class CreateGUI extends javax.swing.JFrame {
         proteinSequenceArea2.setFont(new java.awt.Font("Monospaced", 0, 20)); // NOI18N
         proteinSequenceArea2.setRows(3);
         jScrollPane4.setViewportView(proteinSequenceArea2);
+
+        jToggleButton1.setText("Toggle");
+
+        proteinAreaToggle.setText("Toggle");
+        proteinAreaToggle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                proteinAreaToggleActionPerformed(evt);
+            }
+        });
+
+        nucleotideAreaToggle.setText("Toggle");
+        nucleotideAreaToggle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nucleotideAreaToggleActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("File");
 
@@ -162,13 +190,13 @@ public class CreateGUI extends javax.swing.JFrame {
         jMenu2.add(jMenuItem7);
         jMenu2.add(jSeparator4);
 
-        jMenuItem8.setText("Create Annotation");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+        createAnnotation.setText("Create Annotation");
+        createAnnotation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
+                createAnnotationActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem8);
+        jMenu2.add(createAnnotation);
 
         jMenuBar1.add(jMenu2);
 
@@ -183,17 +211,33 @@ public class CreateGUI extends javax.swing.JFrame {
         jMenu3.add(jMenuItem11);
 
         jMenuItem12.setText("Only Non Selected Annotations");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem12);
         jMenu3.add(jSeparator3);
 
-        jMenuItem13.setText("Annotation Statistics");
-        jMenu3.add(jMenuItem13);
+        highlightSeqGC.setText("Highlighted Sequence GC%");
+        highlightSeqGC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                highlightSeqGCActionPerformed(evt);
+            }
+        });
+        jMenu3.add(highlightSeqGC);
 
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("BLAST");
 
-        jMenuItem14.setText("Run BLAST With Current Sequence");
+        jMenuItem14.setText("Run BLAST");
+        jMenuItem14.setToolTipText("");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem14);
 
         jMenuBar1.add(jMenu4);
@@ -216,24 +260,45 @@ public class CreateGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
-            .addComponent(sequencePane)
-            .addComponent(jScrollPane3)
-            .addComponent(jScrollPane2)
-            .addComponent(jScrollPane4)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(sequencePane, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 928, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(proteinAreaToggle)
+                    .addComponent(nucleotideAreaToggle)
+                    .addComponent(jToggleButton1))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(sequencePane, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(139, 139, 139)
+                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(sequencePane, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(proteinAreaToggle, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nucleotideAreaToggle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -253,38 +318,32 @@ public class CreateGUI extends javax.swing.JFrame {
             String fileName = selectedFile.getAbsolutePath();
             try {
                 inFile = new BufferedReader(new FileReader(fileName));
-                
-                    while ((line = inFile.readLine()) != null) {                      
-                        if (seqStart == true){
-                            sequence = sequence + line;
-                        }
-                        if (line.contains(">") == true){
-                            seqStart = true;
-                        }
+
+                while ((line = inFile.readLine()) != null) {
+                    if (seqStart == true) {
+                        sequence = sequence + line;
                     }
+                    if (line.contains(">") == true) {
+                        seqStart = true;
+                    }
+                }
                 inFile.close();
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(CreateGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            catch (IOException ex) {
-                    Logger.getLogger(CreateGUI.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(CreateGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
             String firstFrameProtein = Sequence.getTranslation(sequence);
             String secondFrameSequence = sequence.substring(1, sequence.length());
             String secondFrameProtein = Sequence.getTranslation(secondFrameSequence);
             String thirdFrameSequence = sequence.substring(2, sequence.length());
             String thirdFrameProtein = Sequence.getTranslation(thirdFrameSequence);
-            String complementSeq = sequence.replace("A", "1");
-            complementSeq = complementSeq.replace("G", "2");
-            complementSeq = complementSeq.replace("T", "A");
-            complementSeq = complementSeq.replace("C", "G");
-            complementSeq = complementSeq.replace("1", "T");
-            complementSeq = complementSeq.replace("2", "C");
+            String complementSeq = DNA.getComplement(sequence);
             proteinSequenceArea1.setText(firstFrameProtein + "\n" + secondFrameProtein + "\n" + thirdFrameProtein);
             nucleotideSequenceArea.setText(sequence + "\n" + complementSeq);
             proteinSequenceArea2.setText(new StringBuilder(firstFrameProtein).reverse().toString() + "\n" + new StringBuilder(secondFrameProtein).reverse().toString() + "\n" + new StringBuilder(thirdFrameProtein).reverse().toString());
         }
-    
+
     }//GEN-LAST:event_fileChooserActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -296,15 +355,27 @@ public class CreateGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(frame,
+                "Buy the full version for this option!",
+                "Undo Action",
+                JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
+    private void createAnnotationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAnnotationActionPerformed
+        //Verkrijgen van de gemarkeerde tekst in de tekstarea.
+        String selectedSeq = proteinSequenceArea1.getSelectedText();
+        System.out.println(selectedSeq);
+        if (selectedSeq == null) {
+            selectedSeq = proteinSequenceArea2.getSelectedText();
+        }
+        new CreateAnnotationGUI(selectedSeq).setVisible(true);
+    }//GEN-LAST:event_createAnnotationActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(frame,
+                "Buy the full version for this option!",
+                "Statistics",
+                JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void closeViewerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeViewerActionPerformed
@@ -313,10 +384,90 @@ public class CreateGUI extends javax.swing.JFrame {
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         JOptionPane.showMessageDialog(frame,
-        "Raadpleeg de manual!",
-        "Help",
-        JOptionPane.PLAIN_MESSAGE);
+                "Read the manual!",
+                "Help",
+                JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    private void proteinSequenceArea1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proteinSequenceArea1MouseDragged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_proteinSequenceArea1MouseDragged
+
+    private void proteinSequenceArea1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proteinSequenceArea1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_proteinSequenceArea1MouseClicked
+
+    private void highlightSeqGCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_highlightSeqGCActionPerformed
+        try {
+        String highlightSeq = (nucleotideSequenceArea.getSelectedText()).toUpperCase();
+        float gcCount = (highlightSeq.length() - highlightSeq.replace("G", "").length()) + (highlightSeq.length() - highlightSeq.replace("C", "").length());
+        float atCount = (highlightSeq.length() - highlightSeq.replace("A", "").length()) + (highlightSeq.length() - highlightSeq.replace("T", "").length());
+        float totalCount = gcCount + atCount;
+        float gcPerc = (gcCount / totalCount)*100;
+        JOptionPane.showMessageDialog(frame,
+                "GC Percentage of Selected Sequence: " + gcPerc + "%",
+                "GC Percentage",
+                JOptionPane.PLAIN_MESSAGE);
+        }
+        catch (NullPointerException ex){
+            JOptionPane.showMessageDialog(frame,
+                    "Please highlight a nucleotide sequence.",
+                    "Error Message",
+                    JOptionPane.PLAIN_MESSAGE);
+        }
+    }//GEN-LAST:event_highlightSeqGCActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        //link naar de blast
+        try {
+            
+         String url = "http://blast.ncbi.nlm.nih.gov/Blast.cgi";
+         java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
+       }
+       catch (java.io.IOException e) {
+           System.out.println(e.getMessage());
+       }
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        JOptionPane.showMessageDialog(frame,
+                "Buy the full version for this option!",
+                "Redo Action",
+                JOptionPane.PLAIN_MESSAGE);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+
+    private void proteinAreaToggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_proteinAreaToggleActionPerformed
+        if (proteinSequenceArea1.isVisible() == true){
+            proteinSequenceArea1.setVisible(false);
+            proteinSequenceArea2.setVisible(false);
+        }
+        else {
+            proteinSequenceArea1.setVisible(true);
+            proteinSequenceArea2.setVisible(true);
+        } 
+    }//GEN-LAST:event_proteinAreaToggleActionPerformed
+
+    private void nucleotideAreaToggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nucleotideAreaToggleActionPerformed
+        if (nucleotideSequenceArea.isVisible() == true){
+            nucleotideSequenceArea.setVisible(false);
+        }
+        else {
+            nucleotideSequenceArea.setVisible(true);
+        }
+    }//GEN-LAST:event_nucleotideAreaToggleActionPerformed
+
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+       JOptionPane.showMessageDialog(frame,
+                "Buy the full version for this option!",
+                "Statistics",
+                JOptionPane.PLAIN_MESSAGE);
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -356,7 +507,9 @@ public class CreateGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem closeViewer;
+    private javax.swing.JMenuItem createAnnotation;
     private javax.swing.JMenuItem fileChooser;
+    private javax.swing.JMenuItem highlightSeqGC;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -368,7 +521,6 @@ public class CreateGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem2;
@@ -377,7 +529,6 @@ public class CreateGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -387,7 +538,10 @@ public class CreateGUI extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
+    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton nucleotideAreaToggle;
     private javax.swing.JTextArea nucleotideSequenceArea;
+    private javax.swing.JToggleButton proteinAreaToggle;
     private javax.swing.JTextArea proteinSequenceArea1;
     private javax.swing.JTextArea proteinSequenceArea2;
     private javax.swing.JScrollPane sequencePane;
