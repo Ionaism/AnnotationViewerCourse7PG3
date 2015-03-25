@@ -10,9 +10,9 @@ package annotationviewerpg3;
  * @author Rowan
  */
 public class DNA extends Sequence{
-    public String getComplement() {
-        int sequence_id = 0;
-        String seq = this.getSequence(sequence_id);
+    public static String getComplement(String seq) {
+       // int sequence_id = 0;
+       // String seq = this.getSequence(sequence_id);
         int counter = 0;
         seq = seq.replace("A", "1");
         seq = seq.replace("G", "2");
