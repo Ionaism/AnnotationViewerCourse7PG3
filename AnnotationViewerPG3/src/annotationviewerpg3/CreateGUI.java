@@ -366,8 +366,9 @@ public class CreateGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        //link naar de blast
         try {
-         //Set your page url in this string. For eg, I m using URL for Google Search engine
+            
          String url = "http://blast.ncbi.nlm.nih.gov/Blast.cgi";
          java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
        }
