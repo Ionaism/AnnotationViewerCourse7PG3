@@ -315,7 +315,7 @@ public class CreateGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-     
+     //Verkrijgen van de gemarkeerde tekst in de tekstarea.
         String selectedSeq = proteinSequenceArea1.getSelectedText();
         System.out.println(selectedSeq);
         if (selectedSeq == null){
