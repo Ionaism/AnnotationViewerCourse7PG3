@@ -183,20 +183,10 @@ public class CreateGUI extends javax.swing.JFrame {
         jMenu2.add(jMenuItem4);
 
         jMenuItem5.setText("Redo");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
-            }
-        });
         jMenu2.add(jMenuItem5);
         jMenu2.add(jSeparator2);
 
         jMenuItem7.setText("Delete Selected Annotations");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
-            }
-        });
         jMenu2.add(jMenuItem7);
         jMenu2.add(jSeparator4);
 
@@ -221,6 +211,11 @@ public class CreateGUI extends javax.swing.JFrame {
         jMenu3.add(jMenuItem11);
 
         jMenuItem12.setText("Only Non Selected Annotations");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem12);
         jMenu3.add(jSeparator3);
 
@@ -236,7 +231,8 @@ public class CreateGUI extends javax.swing.JFrame {
 
         jMenu4.setText("BLAST");
 
-        jMenuItem14.setText("Run BLAST With Current Sequence");
+        jMenuItem14.setText("Run BLAST");
+        jMenuItem14.setToolTipText("");
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem14ActionPerformed(evt);
@@ -378,7 +374,10 @@ public class CreateGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(frame,
+                "Buy the full version for this option!",
+                "Statistics",
+                JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void closeViewerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeViewerActionPerformed
@@ -421,10 +420,15 @@ public class CreateGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_highlightSeqGCActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
-        JOptionPane.showMessageDialog(frame,
-                "Buy the full version for this option!",
-                "Blast",
-                JOptionPane.PLAIN_MESSAGE);
+        //link naar de blast
+        try {
+            
+         String url = "http://blast.ncbi.nlm.nih.gov/Blast.cgi";
+         java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
+       }
+       catch (java.io.IOException e) {
+           System.out.println(e.getMessage());
+       }
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
@@ -437,6 +441,7 @@ public class CreateGUI extends javax.swing.JFrame {
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem7ActionPerformed
+
 
     private void proteinAreaToggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_proteinAreaToggleActionPerformed
         if (proteinSequenceArea1.isVisible() == true){
@@ -457,6 +462,14 @@ public class CreateGUI extends javax.swing.JFrame {
             nucleotideSequenceArea.setVisible(true);
         }
     }//GEN-LAST:event_nucleotideAreaToggleActionPerformed
+
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+       JOptionPane.showMessageDialog(frame,
+                "Buy the full version for this option!",
+                "Statistics",
+                JOptionPane.PLAIN_MESSAGE);
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
 
     /**
      * @param args the command line arguments
