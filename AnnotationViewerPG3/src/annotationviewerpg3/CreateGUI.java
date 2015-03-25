@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
- *.
+ * .
  * @author Rowan
  */
 public class CreateGUI extends javax.swing.JFrame {
@@ -23,7 +23,7 @@ public class CreateGUI extends javax.swing.JFrame {
     private JFileChooser fileChoose;
     private Component emptyLabel;
     private Component frame;
-    
+
     public CreateGUI() {
         initComponents();
     }
@@ -165,10 +165,20 @@ public class CreateGUI extends javax.swing.JFrame {
         jMenu2.add(jMenuItem4);
 
         jMenuItem5.setText("Redo");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem5);
         jMenu2.add(jSeparator2);
 
         jMenuItem7.setText("Delete Selected Annotations");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem7);
         jMenu2.add(jSeparator4);
 
@@ -209,6 +219,11 @@ public class CreateGUI extends javax.swing.JFrame {
         jMenu4.setText("BLAST");
 
         jMenuItem14.setText("Run BLAST With Current Sequence");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem14);
 
         jMenuBar1.add(jMenu4);
@@ -268,21 +283,20 @@ public class CreateGUI extends javax.swing.JFrame {
             String fileName = selectedFile.getAbsolutePath();
             try {
                 inFile = new BufferedReader(new FileReader(fileName));
-                
-                    while ((line = inFile.readLine()) != null) {                      
-                        if (seqStart == true){
-                            sequence = sequence + line;
-                        }
-                        if (line.contains(">") == true){
-                            seqStart = true;
-                        }
+
+                while ((line = inFile.readLine()) != null) {
+                    if (seqStart == true) {
+                        sequence = sequence + line;
                     }
+                    if (line.contains(">") == true) {
+                        seqStart = true;
+                    }
+                }
                 inFile.close();
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(CreateGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            catch (IOException ex) {
-                    Logger.getLogger(CreateGUI.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(CreateGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
             String firstFrameProtein = Sequence.getTranslation(sequence);
             String secondFrameSequence = sequence.substring(1, sequence.length());
@@ -294,7 +308,7 @@ public class CreateGUI extends javax.swing.JFrame {
             nucleotideSequenceArea.setText(sequence + "\n" + complementSeq);
             proteinSequenceArea2.setText(new StringBuilder(firstFrameProtein).reverse().toString() + "\n" + new StringBuilder(secondFrameProtein).reverse().toString() + "\n" + new StringBuilder(thirdFrameProtein).reverse().toString());
         }
-    
+
     }//GEN-LAST:event_fileChooserActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -306,14 +320,17 @@ public class CreateGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(frame,
+                "Buy the full version for this option!",
+                "Undo Action",
+                JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-     //Verkrijgen van de gemarkeerde tekst in de tekstarea.
+        //Verkrijgen van de gemarkeerde tekst in de tekstarea.
         String selectedSeq = proteinSequenceArea1.getSelectedText();
         System.out.println(selectedSeq);
-        if (selectedSeq == null){
+        if (selectedSeq == null) {
             selectedSeq = proteinSequenceArea2.getSelectedText();
         }
         System.out.println(selectedSeq);
@@ -329,9 +346,9 @@ public class CreateGUI extends javax.swing.JFrame {
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         JOptionPane.showMessageDialog(frame,
-        "Raadpleeg de manual!",
-        "Help",
-        JOptionPane.PLAIN_MESSAGE);
+                "Read the manual!",
+                "Help",
+                JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void proteinSequenceArea1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proteinSequenceArea1MouseDragged
@@ -343,8 +360,29 @@ public class CreateGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_proteinSequenceArea1MouseClicked
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(frame,
+                "Buy the full version for this option!",
+                "Annotation Statistics",
+                JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        JOptionPane.showMessageDialog(frame,
+                "Buy the full version for this option!",
+                "Blast",
+                JOptionPane.PLAIN_MESSAGE);
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        JOptionPane.showMessageDialog(frame,
+                "Buy the full version for this option!",
+                "Redo Action",
+                JOptionPane.PLAIN_MESSAGE);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     /**
      * @param args the command line arguments
