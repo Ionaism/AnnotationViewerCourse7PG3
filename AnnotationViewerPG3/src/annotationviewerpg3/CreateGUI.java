@@ -290,12 +290,6 @@ public class CreateGUI extends javax.swing.JFrame {
             String thirdFrameSequence = sequence.substring(2, sequence.length());
             String thirdFrameProtein = Sequence.getTranslation(thirdFrameSequence);
             String complementSeq = DNA.getComplement(sequence);
-            //String complementSeq = sequence.replace("A", "1");
-//            complementSeq = complementSeq.replace("G", "2");
-//            complementSeq = complementSeq.replace("T", "A");
-//            complementSeq = complementSeq.replace("C", "G");
-//            complementSeq = complementSeq.replace("1", "T");
-//            complementSeq = complementSeq.replace("2", "C");
             proteinSequenceArea1.setText(firstFrameProtein + "\n" + secondFrameProtein + "\n" + thirdFrameProtein);
             nucleotideSequenceArea.setText(sequence + "\n" + complementSeq);
             proteinSequenceArea2.setText(new StringBuilder(firstFrameProtein).reverse().toString() + "\n" + new StringBuilder(secondFrameProtein).reverse().toString() + "\n" + new StringBuilder(thirdFrameProtein).reverse().toString());

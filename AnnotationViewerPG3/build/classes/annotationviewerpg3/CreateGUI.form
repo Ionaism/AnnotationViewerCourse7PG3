@@ -133,6 +133,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Annotation Statistics"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem13ActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -234,6 +237,10 @@
             </Property>
             <Property name="rows" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="proteinSequenceArea1MouseDragged"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="proteinSequenceArea1MouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
