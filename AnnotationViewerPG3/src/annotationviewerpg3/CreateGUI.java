@@ -65,7 +65,7 @@ public class CreateGUI extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jMenuItem7 = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        createAnnotation = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
@@ -190,13 +190,13 @@ public class CreateGUI extends javax.swing.JFrame {
         jMenu2.add(jMenuItem7);
         jMenu2.add(jSeparator4);
 
-        jMenuItem8.setText("Create Annotation");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+        createAnnotation.setText("Create Annotation");
+        createAnnotation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
+                createAnnotationActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem8);
+        jMenu2.add(createAnnotation);
 
         jMenuBar1.add(jMenu2);
 
@@ -361,17 +361,15 @@ public class CreateGUI extends javax.swing.JFrame {
                 JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+    private void createAnnotationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAnnotationActionPerformed
         //Verkrijgen van de gemarkeerde tekst in de tekstarea.
         String selectedSeq = proteinSequenceArea1.getSelectedText();
         System.out.println(selectedSeq);
         if (selectedSeq == null) {
             selectedSeq = proteinSequenceArea2.getSelectedText();
         }
-        new CreateAnnotationGUI().setVisible(true);
-        CreateAnnotationGUI.setAnnotationSequence(selectedSeq);
-        //CreateAnnotationGUI.annotationSequenceField.setText(selectedSeq);
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
+        new CreateAnnotationGUI(selectedSeq).setVisible(true);
+    }//GEN-LAST:event_createAnnotationActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         JOptionPane.showMessageDialog(frame,
@@ -401,19 +399,19 @@ public class CreateGUI extends javax.swing.JFrame {
 
     private void highlightSeqGCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_highlightSeqGCActionPerformed
         try {
-        String highlightSeq = nucleotideSequenceArea.getSelectedText();
+        String highlightSeq = (nucleotideSequenceArea.getSelectedText()).toUpperCase();
         float gcCount = (highlightSeq.length() - highlightSeq.replace("G", "").length()) + (highlightSeq.length() - highlightSeq.replace("C", "").length());
         float atCount = (highlightSeq.length() - highlightSeq.replace("A", "").length()) + (highlightSeq.length() - highlightSeq.replace("T", "").length());
         float totalCount = gcCount + atCount;
         float gcPerc = (gcCount / totalCount)*100;
         JOptionPane.showMessageDialog(frame,
                 "GC Percentage of Selected Sequence: " + gcPerc + "%",
-                "Annotation Statistics",
+                "GC Percentage",
                 JOptionPane.PLAIN_MESSAGE);
         }
         catch (NullPointerException ex){
             JOptionPane.showMessageDialog(frame,
-                    "Please highlight a sequence.",
+                    "Please highlight a nucleotide sequence.",
                     "Error Message",
                     JOptionPane.PLAIN_MESSAGE);
         }
@@ -509,6 +507,7 @@ public class CreateGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem closeViewer;
+    private javax.swing.JMenuItem createAnnotation;
     private javax.swing.JMenuItem fileChooser;
     private javax.swing.JMenuItem highlightSeqGC;
     private javax.swing.JMenu jMenu1;
@@ -530,7 +529,6 @@ public class CreateGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
