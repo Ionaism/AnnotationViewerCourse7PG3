@@ -83,6 +83,16 @@ public class CreateGUI extends javax.swing.JFrame {
         proteinSequenceArea1.setColumns(20);
         proteinSequenceArea1.setFont(new java.awt.Font("Monospaced", 0, 20)); // NOI18N
         proteinSequenceArea1.setRows(3);
+        proteinSequenceArea1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                proteinSequenceArea1MouseDragged(evt);
+            }
+        });
+        proteinSequenceArea1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                proteinSequenceArea1MouseClicked(evt);
+            }
+        });
         sequencePane.setViewportView(proteinSequenceArea1);
 
         nucleotideSequenceArea.setColumns(20);
@@ -187,6 +197,11 @@ public class CreateGUI extends javax.swing.JFrame {
         jMenu3.add(jSeparator3);
 
         jMenuItem13.setText("Annotation Statistics");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem13);
 
         jMenuBar1.add(jMenu3);
@@ -301,7 +316,7 @@ public class CreateGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-     
+     //Verkrijgen van de gemarkeerde tekst in de tekstarea.
         String selectedSeq = proteinSequenceArea1.getSelectedText();
         System.out.println(selectedSeq);
         if (selectedSeq == null){
@@ -324,6 +339,18 @@ public class CreateGUI extends javax.swing.JFrame {
         "Help",
         JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    private void proteinSequenceArea1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proteinSequenceArea1MouseDragged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_proteinSequenceArea1MouseDragged
+
+    private void proteinSequenceArea1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proteinSequenceArea1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_proteinSequenceArea1MouseClicked
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     /**
      * @param args the command line arguments
