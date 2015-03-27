@@ -1,5 +1,8 @@
 package annotationviewerpg3;
 
+import java.awt.Component;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,6 +18,7 @@ public class CreateAnnotationGUI extends javax.swing.JFrame {
      * Creates new form GeneGUI
      */
     private static String selectedSeq;
+    Component frame = null;
     
     public CreateAnnotationGUI(String seq) {
         this.selectedSeq = seq;
@@ -109,7 +113,19 @@ public class CreateAnnotationGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addAnnotationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAnnotationButtonActionPerformed
-
+        String annotationSeq = annotationSequenceField.getText();
+        if (annotationSeq.matches("[ARNDCEQGHILKMFPSTWYV*]+")){
+            String annotationType = (String) annotationDropDown.getSelectedItem();
+            String annotationName = annotationNameField.getText();
+            CreateGUI.createAnnotation(annotationSeq, annotationType, annotationName);
+            dispose();
+        }
+        else {
+        JOptionPane.showMessageDialog(frame,
+                "This is not a valid protein sequence!",
+                "Annotation Sequence Error",
+                JOptionPane.PLAIN_MESSAGE);
+        }
     }//GEN-LAST:event_addAnnotationButtonActionPerformed
 
     /**

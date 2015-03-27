@@ -37,7 +37,8 @@ public class CreateGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem6 = new javax.swing.JMenuItem();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        annotationPanel = new javax.swing.JScrollPane();
+        annotationArea = new javax.swing.JTextArea();
         sequencePane = new javax.swing.JScrollPane();
         proteinSequenceArea1 = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -45,7 +46,7 @@ public class CreateGUI extends javax.swing.JFrame {
         nucleotideSequenceArea = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
         proteinSequenceArea2 = new javax.swing.JTextArea();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        annotationPanelToggle = new javax.swing.JToggleButton();
         proteinAreaToggle = new javax.swing.JToggleButton();
         nucleotideAreaToggle = new javax.swing.JToggleButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -80,6 +81,11 @@ public class CreateGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        annotationArea.setColumns(20);
+        annotationArea.setRows(5);
+        annotationArea.setText("Annotation Type - Annotation Name - Annotation Sequence\n---------------------------------------------------------------------------------------------");
+        annotationPanel.setViewportView(annotationArea);
+
         sequencePane.setBackground(new java.awt.Color(255, 255, 255));
 
         proteinSequenceArea1.setColumns(20);
@@ -106,7 +112,12 @@ public class CreateGUI extends javax.swing.JFrame {
         proteinSequenceArea2.setRows(3);
         jScrollPane4.setViewportView(proteinSequenceArea2);
 
-        jToggleButton1.setText("Toggle");
+        annotationPanelToggle.setText("Toggle");
+        annotationPanelToggle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                annotationPanelToggleActionPerformed(evt);
+            }
+        });
 
         proteinAreaToggle.setText("Toggle");
         proteinAreaToggle.addActionListener(new java.awt.event.ActionListener() {
@@ -244,7 +255,7 @@ public class CreateGUI extends javax.swing.JFrame {
         jMenu3.add(viewNonSelAnnotations);
         jMenu3.add(jSeparator3);
 
-        highlightSeqGC.setText("Highlighted Sequence GC%");
+        highlightSeqGC.setText("Calculate GC% of Highlighted Nucleotide Sequence");
         highlightSeqGC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 highlightSeqGCActionPerformed(evt);
@@ -290,23 +301,23 @@ public class CreateGUI extends javax.swing.JFrame {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(sequencePane, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(annotationPanel)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 928, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(proteinAreaToggle)
                     .addComponent(nucleotideAreaToggle)
-                    .addComponent(jToggleButton1))
+                    .addComponent(annotationPanelToggle))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(annotationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(139, 139, 139)
-                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(annotationPanelToggle, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(11, 11, 11)
@@ -395,7 +406,6 @@ public class CreateGUI extends javax.swing.JFrame {
     private void createAnnotationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAnnotationActionPerformed
         //Verkrijgen van de gemarkeerde tekst in de tekstarea.
         String selectedSeq = proteinSequenceArea1.getSelectedText();
-        System.out.println(selectedSeq);
         if (selectedSeq == null) {
             selectedSeq = proteinSequenceArea2.getSelectedText();
         }
@@ -420,25 +430,25 @@ public class CreateGUI extends javax.swing.JFrame {
                 JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_openHelpActionPerformed
 
-    private void proteinSequenceArea1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proteinSequenceArea1MouseDragged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_proteinSequenceArea1MouseDragged
-
-    private void proteinSequenceArea1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proteinSequenceArea1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_proteinSequenceArea1MouseClicked
-
     private void highlightSeqGCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_highlightSeqGCActionPerformed
         try {
-        String highlightSeq = (nucleotideSequenceArea.getSelectedText()).toUpperCase();
-        float gcCount = (highlightSeq.length() - highlightSeq.replace("G", "").length()) + (highlightSeq.length() - highlightSeq.replace("C", "").length());
-        float atCount = (highlightSeq.length() - highlightSeq.replace("A", "").length()) + (highlightSeq.length() - highlightSeq.replace("T", "").length());
-        float totalCount = gcCount + atCount;
-        float gcPerc = (gcCount / totalCount)*100;
-        JOptionPane.showMessageDialog(frame,
-                "GC Percentage of Selected Sequence: " + gcPerc + "%",
-                "GC Percentage",
-                JOptionPane.PLAIN_MESSAGE);
+            String highlightSeq = (nucleotideSequenceArea.getSelectedText()).toUpperCase();
+            if (highlightSeq.matches("[ATGC]+") == true){
+                float gcCount = (highlightSeq.length() - highlightSeq.replace("G", "").length()) + (highlightSeq.length() - highlightSeq.replace("C", "").length());
+                float atCount = (highlightSeq.length() - highlightSeq.replace("A", "").length()) + (highlightSeq.length() - highlightSeq.replace("T", "").length());
+                float totalCount = gcCount + atCount;
+                float gcPerc = (gcCount / totalCount)*100;
+                JOptionPane.showMessageDialog(frame,
+                        "GC Percentage of Selected Sequence: " + gcPerc + "%",
+                        "GC Percentage",
+                        JOptionPane.PLAIN_MESSAGE);
+            }
+            else {
+                JOptionPane.showMessageDialog(frame,
+                    "This is not a valid nucleotide sequence.",
+                    "Error Message",
+                    JOptionPane.PLAIN_MESSAGE);
+            }
         }
         catch (NullPointerException ex){
             JOptionPane.showMessageDialog(frame,
@@ -530,6 +540,26 @@ public class CreateGUI extends javax.swing.JFrame {
                 JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_redoActionActionPerformed
 
+    private void annotationPanelToggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_annotationPanelToggleActionPerformed
+        if (annotationArea.isVisible() == true){
+            annotationArea.setVisible(false);
+        }
+        else {
+            annotationArea.setVisible(true);
+        }
+    }//GEN-LAST:event_annotationPanelToggleActionPerformed
+
+    private void proteinSequenceArea1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proteinSequenceArea1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_proteinSequenceArea1MouseClicked
+
+    private void proteinSequenceArea1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proteinSequenceArea1MouseDragged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_proteinSequenceArea1MouseDragged
+    
+    public static void createAnnotation(String annotationSeq, String annotationType, String annotationName){
+        annotationArea.append("\n" + annotationType + " - " + annotationName + " - " + annotationSeq);
+    }
 
     /**
      * @param args the command line arguments
@@ -568,6 +598,9 @@ public class CreateGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private static javax.swing.JTextArea annotationArea;
+    private javax.swing.JScrollPane annotationPanel;
+    private javax.swing.JToggleButton annotationPanelToggle;
     private javax.swing.JMenuItem closeViewer;
     private javax.swing.JMenuItem createAnnotation;
     private javax.swing.JMenuItem deleteSelAnnotations;
@@ -580,7 +613,6 @@ public class CreateGUI extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -588,7 +620,6 @@ public class CreateGUI extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton nucleotideAreaToggle;
     private javax.swing.JTextArea nucleotideSequenceArea;
     private javax.swing.JMenuItem openHelp;
