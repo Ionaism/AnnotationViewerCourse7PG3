@@ -30,11 +30,11 @@ public class CreateAnnotationGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        addAnnotationButton = new javax.swing.JButton();
+        nameLabel = new javax.swing.JLabel();
+        selectSeqLabel = new javax.swing.JLabel();
         annotationDropDown = new javax.swing.JComboBox();
-        jLabel3 = new javax.swing.JLabel();
+        selectTypeLabel = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         annotationSequenceField = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -42,20 +42,20 @@ public class CreateAnnotationGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jButton1.setText("Add the annotation");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        addAnnotationButton.setText("Add the annotation");
+        addAnnotationButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                addAnnotationButtonActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Name the annotation:");
+        nameLabel.setText("Name the annotation:");
 
-        jLabel2.setText("The selected sequence:");
+        selectSeqLabel.setText("The selected sequence:");
 
         annotationDropDown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Gene", "Chromosome" }));
 
-        jLabel3.setText("Select the type of annotation:");
+        selectTypeLabel.setText("Select the type of annotation:");
 
         annotationSequenceField.setColumns(20);
         annotationSequenceField.setRows(5);
@@ -71,55 +71,46 @@ public class CreateAnnotationGUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(annotationDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel2)))
+                            .addComponent(nameLabel)
+                            .addComponent(selectTypeLabel)
+                            .addComponent(annotationDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(selectSeqLabel))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE))))
+                    .addComponent(jScrollPane1)
+                    .addComponent(addAnnotationButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(jLabel3)
+                .addComponent(selectTypeLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(annotationDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1)
+                .addComponent(nameLabel)
                 .addGap(5, 5, 5)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
-                .addComponent(jLabel2)
+                .addComponent(selectSeqLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(addAnnotationButton)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void addAnnotationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAnnotationButtonActionPerformed
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_addAnnotationButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -158,14 +149,14 @@ public class CreateAnnotationGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addAnnotationButton;
     private javax.swing.JComboBox annotationDropDown;
     private javax.swing.JTextArea annotationNameField;
     private javax.swing.JTextArea annotationSequenceField;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel nameLabel;
+    private javax.swing.JLabel selectSeqLabel;
+    private javax.swing.JLabel selectTypeLabel;
     // End of variables declaration//GEN-END:variables
 }

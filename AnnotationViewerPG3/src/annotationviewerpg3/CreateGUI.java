@@ -52,29 +52,29 @@ public class CreateGUI extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         fileChooser = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu9 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
+        saveEntryDatabase = new javax.swing.JMenuItem();
+        saveEntryOptions = new javax.swing.JMenu();
+        saveFASTA = new javax.swing.JMenuItem();
+        saveGFF = new javax.swing.JMenuItem();
+        saveGenbank = new javax.swing.JMenuItem();
+        preferences = new javax.swing.JMenuItem();
         closeViewer = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        undoAction = new javax.swing.JMenuItem();
+        redoAction = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        deleteSelAnnotations = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
         createAnnotation = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
+        viewSelAnnotations = new javax.swing.JMenuItem();
+        viewNonSelAnnotations = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         highlightSeqGC = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem14 = new javax.swing.JMenuItem();
+        useBLAST = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
-        jMenuItem15 = new javax.swing.JMenuItem();
+        openHelp = new javax.swing.JMenuItem();
 
         jMenuItem6.setText("jMenuItem6");
 
@@ -133,34 +133,49 @@ public class CreateGUI extends javax.swing.JFrame {
         jMenu1.add(fileChooser);
         jMenu1.add(jSeparator1);
 
-        jMenuItem3.setText("Save Entry Into Database");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        saveEntryDatabase.setText("Save Entry Into Database");
+        saveEntryDatabase.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                saveEntryDatabaseActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        jMenu1.add(saveEntryDatabase);
 
-        jMenu9.setText("Save All Entries As");
+        saveEntryOptions.setText("Save All Entries As");
 
-        jMenuItem1.setText("FASTA File");
-        jMenu9.add(jMenuItem1);
-
-        jMenuItem2.setText("GFF File");
-        jMenu9.add(jMenuItem2);
-
-        jMenuItem10.setText("Genbank File");
-        jMenu9.add(jMenuItem10);
-
-        jMenu1.add(jMenu9);
-
-        jMenuItem9.setText("Preferences");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+        saveFASTA.setText("FASTA File");
+        saveFASTA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
+                saveFASTAActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem9);
+        saveEntryOptions.add(saveFASTA);
+
+        saveGFF.setText("GFF File");
+        saveGFF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveGFFActionPerformed(evt);
+            }
+        });
+        saveEntryOptions.add(saveGFF);
+
+        saveGenbank.setText("Genbank File");
+        saveGenbank.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveGenbankActionPerformed(evt);
+            }
+        });
+        saveEntryOptions.add(saveGenbank);
+
+        jMenu1.add(saveEntryOptions);
+
+        preferences.setText("Preferences");
+        preferences.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                preferencesActionPerformed(evt);
+            }
+        });
+        jMenu1.add(preferences);
 
         closeViewer.setText("Close");
         closeViewer.addActionListener(new java.awt.event.ActionListener() {
@@ -174,20 +189,30 @@ public class CreateGUI extends javax.swing.JFrame {
 
         jMenu2.setText("Edit");
 
-        jMenuItem4.setText("Undo");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        undoAction.setText("Undo");
+        undoAction.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                undoActionActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem4);
+        jMenu2.add(undoAction);
 
-        jMenuItem5.setText("Redo");
-        jMenu2.add(jMenuItem5);
+        redoAction.setText("Redo");
+        redoAction.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                redoActionActionPerformed(evt);
+            }
+        });
+        jMenu2.add(redoAction);
         jMenu2.add(jSeparator2);
 
-        jMenuItem7.setText("Delete Selected Annotations");
-        jMenu2.add(jMenuItem7);
+        deleteSelAnnotations.setText("Delete Selected Annotations");
+        deleteSelAnnotations.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteSelAnnotationsActionPerformed(evt);
+            }
+        });
+        jMenu2.add(deleteSelAnnotations);
         jMenu2.add(jSeparator4);
 
         createAnnotation.setText("Create Annotation");
@@ -202,21 +227,21 @@ public class CreateGUI extends javax.swing.JFrame {
 
         jMenu3.setText("View");
 
-        jMenuItem11.setText("Only Selected Annotations");
-        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+        viewSelAnnotations.setText("Only Selected Annotations");
+        viewSelAnnotations.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem11ActionPerformed(evt);
+                viewSelAnnotationsActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem11);
+        jMenu3.add(viewSelAnnotations);
 
-        jMenuItem12.setText("Only Non Selected Annotations");
-        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+        viewNonSelAnnotations.setText("Only Non Selected Annotations");
+        viewNonSelAnnotations.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem12ActionPerformed(evt);
+                viewNonSelAnnotationsActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem12);
+        jMenu3.add(viewNonSelAnnotations);
         jMenu3.add(jSeparator3);
 
         highlightSeqGC.setText("Highlighted Sequence GC%");
@@ -231,26 +256,26 @@ public class CreateGUI extends javax.swing.JFrame {
 
         jMenu4.setText("BLAST");
 
-        jMenuItem14.setText("Run BLAST");
-        jMenuItem14.setToolTipText("");
-        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+        useBLAST.setText("Run BLAST");
+        useBLAST.setToolTipText("");
+        useBLAST.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem14ActionPerformed(evt);
+                useBLASTActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem14);
+        jMenu4.add(useBLAST);
 
         jMenuBar1.add(jMenu4);
 
         jMenu5.setText("Help");
 
-        jMenuItem15.setText("Open Help Document");
-        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+        openHelp.setText("Open Help Document");
+        openHelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem15ActionPerformed(evt);
+                openHelpActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem15);
+        jMenu5.add(openHelp);
 
         jMenuBar1.add(jMenu5);
 
@@ -346,20 +371,26 @@ public class CreateGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_fileChooserActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
-
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void saveEntryDatabaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveEntryDatabaseActionPerformed
         JOptionPane.showMessageDialog(frame,
-                "Buy the full version for this option!",
+                "Buy the full version to use this feature!",
+                "Save Entries into Database",
+                JOptionPane.PLAIN_MESSAGE);
+    }//GEN-LAST:event_saveEntryDatabaseActionPerformed
+
+    private void preferencesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_preferencesActionPerformed
+        JOptionPane.showMessageDialog(frame,
+                "Buy the full version to use this feature!",
+                "Preferences",
+                JOptionPane.PLAIN_MESSAGE);
+    }//GEN-LAST:event_preferencesActionPerformed
+
+    private void undoActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoActionActionPerformed
+        JOptionPane.showMessageDialog(frame,
+                "Buy the full version to use this feature!",
                 "Undo Action",
                 JOptionPane.PLAIN_MESSAGE);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_undoActionActionPerformed
 
     private void createAnnotationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAnnotationActionPerformed
         //Verkrijgen van de gemarkeerde tekst in de tekstarea.
@@ -371,23 +402,23 @@ public class CreateGUI extends javax.swing.JFrame {
         new CreateAnnotationGUI(selectedSeq).setVisible(true);
     }//GEN-LAST:event_createAnnotationActionPerformed
 
-    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+    private void viewSelAnnotationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewSelAnnotationsActionPerformed
         JOptionPane.showMessageDialog(frame,
-                "Buy the full version for this option!",
-                "Statistics",
+                "Buy the full version to use this feature!",
+                "View Selected Annotations",
                 JOptionPane.PLAIN_MESSAGE);
-    }//GEN-LAST:event_jMenuItem11ActionPerformed
+    }//GEN-LAST:event_viewSelAnnotationsActionPerformed
 
     private void closeViewerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeViewerActionPerformed
         System.exit(0);
     }//GEN-LAST:event_closeViewerActionPerformed
 
-    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+    private void openHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openHelpActionPerformed
         JOptionPane.showMessageDialog(frame,
                 "Read the manual!",
                 "Help",
                 JOptionPane.PLAIN_MESSAGE);
-    }//GEN-LAST:event_jMenuItem15ActionPerformed
+    }//GEN-LAST:event_openHelpActionPerformed
 
     private void proteinSequenceArea1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proteinSequenceArea1MouseDragged
         // TODO add your handling code here:
@@ -417,7 +448,7 @@ public class CreateGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_highlightSeqGCActionPerformed
 
-    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+    private void useBLASTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_useBLASTActionPerformed
         //link naar de blast
         try {
             
@@ -427,18 +458,21 @@ public class CreateGUI extends javax.swing.JFrame {
        catch (java.io.IOException e) {
            System.out.println(e.getMessage());
        }
-    }//GEN-LAST:event_jMenuItem14ActionPerformed
+    }//GEN-LAST:event_useBLASTActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         JOptionPane.showMessageDialog(frame,
-                "Buy the full version for this option!",
+                "Buy the full version to use this feature!",
                 "Redo Action",
                 JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    private void deleteSelAnnotationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteSelAnnotationsActionPerformed
+        JOptionPane.showMessageDialog(frame,
+                "Buy the full version to use this feature!",
+                "Delete Selected Annotations",
+                JOptionPane.PLAIN_MESSAGE);
+    }//GEN-LAST:event_deleteSelAnnotationsActionPerformed
 
 
     private void proteinAreaToggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_proteinAreaToggleActionPerformed
@@ -461,12 +495,40 @@ public class CreateGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_nucleotideAreaToggleActionPerformed
 
-    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+    private void viewNonSelAnnotationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewNonSelAnnotationsActionPerformed
        JOptionPane.showMessageDialog(frame,
-                "Buy the full version for this option!",
-                "Statistics",
+                "Buy the full version to use this feature!",
+                "View Non Selected Annotations",
                 JOptionPane.PLAIN_MESSAGE);
-    }//GEN-LAST:event_jMenuItem12ActionPerformed
+    }//GEN-LAST:event_viewNonSelAnnotationsActionPerformed
+
+    private void saveFASTAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveFASTAActionPerformed
+        JOptionPane.showMessageDialog(frame,
+                "Buy the full version to use this feature!",
+                "Save as FASTA",
+                JOptionPane.PLAIN_MESSAGE);
+    }//GEN-LAST:event_saveFASTAActionPerformed
+
+    private void saveGFFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveGFFActionPerformed
+        JOptionPane.showMessageDialog(frame,
+                "Buy the full version to use this feature!",
+                "Save as GFF",
+                JOptionPane.PLAIN_MESSAGE);
+    }//GEN-LAST:event_saveGFFActionPerformed
+
+    private void saveGenbankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveGenbankActionPerformed
+        JOptionPane.showMessageDialog(frame,
+                "Buy the full version to use this feature!",
+                "Save as Genbank",
+                JOptionPane.PLAIN_MESSAGE);
+    }//GEN-LAST:event_saveGenbankActionPerformed
+
+    private void redoActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redoActionActionPerformed
+        JOptionPane.showMessageDialog(frame,
+                "Buy the full version to use this feature!",
+                "Redo Action",
+                JOptionPane.PLAIN_MESSAGE);
+    }//GEN-LAST:event_redoActionActionPerformed
 
 
     /**
@@ -508,6 +570,7 @@ public class CreateGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem closeViewer;
     private javax.swing.JMenuItem createAnnotation;
+    private javax.swing.JMenuItem deleteSelAnnotations;
     private javax.swing.JMenuItem fileChooser;
     private javax.swing.JMenuItem highlightSeqGC;
     private javax.swing.JMenu jMenu1;
@@ -515,21 +578,8 @@ public class CreateGUI extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem14;
-    private javax.swing.JMenuItem jMenuItem15;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -541,9 +591,21 @@ public class CreateGUI extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton nucleotideAreaToggle;
     private javax.swing.JTextArea nucleotideSequenceArea;
+    private javax.swing.JMenuItem openHelp;
+    private javax.swing.JMenuItem preferences;
     private javax.swing.JToggleButton proteinAreaToggle;
     private javax.swing.JTextArea proteinSequenceArea1;
     private javax.swing.JTextArea proteinSequenceArea2;
+    private javax.swing.JMenuItem redoAction;
+    private javax.swing.JMenuItem saveEntryDatabase;
+    private javax.swing.JMenu saveEntryOptions;
+    private javax.swing.JMenuItem saveFASTA;
+    private javax.swing.JMenuItem saveGFF;
+    private javax.swing.JMenuItem saveGenbank;
     private javax.swing.JScrollPane sequencePane;
+    private javax.swing.JMenuItem undoAction;
+    private javax.swing.JMenuItem useBLAST;
+    private javax.swing.JMenuItem viewNonSelAnnotations;
+    private javax.swing.JMenuItem viewSelAnnotations;
     // End of variables declaration//GEN-END:variables
 }
