@@ -44,6 +44,7 @@ public class CreateGUI extends javax.swing.JFrame {
         annotationPanelToggle = new javax.swing.JToggleButton();
         proteinAreaToggle = new javax.swing.JToggleButton();
         nucleotideAreaToggle = new javax.swing.JToggleButton();
+        hoverBar = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         fileChooser = new javax.swing.JMenuItem();
@@ -75,10 +76,26 @@ public class CreateGUI extends javax.swing.JFrame {
         jMenuItem6.setText("jMenuItem6");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Annotation Viewer PG3");
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                formMouseMoved(evt);
+            }
+        });
 
         annotationArea.setColumns(20);
         annotationArea.setRows(5);
         annotationArea.setText("Annotation Type - Annotation Name - Annotation Sequence\n---------------------------------------------------------------------------------------------");
+        annotationArea.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                annotationAreaMouseMoved(evt);
+            }
+        });
+        annotationArea.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                annotationAreaMouseEntered(evt);
+            }
+        });
         annotationPanel.setViewportView(annotationArea);
 
         sequencePane.setBackground(new java.awt.Color(255, 255, 255));
@@ -90,6 +107,9 @@ public class CreateGUI extends javax.swing.JFrame {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 proteinSequenceArea1MouseDragged(evt);
             }
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                proteinSequenceArea1MouseMoved(evt);
+            }
         });
         proteinSequenceArea1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -100,14 +120,29 @@ public class CreateGUI extends javax.swing.JFrame {
 
         nucleotideSequenceArea.setColumns(20);
         nucleotideSequenceArea.setRows(2);
+        nucleotideSequenceArea.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                nucleotideSequenceAreaMouseMoved(evt);
+            }
+        });
         jScrollPane2.setViewportView(nucleotideSequenceArea);
 
         proteinSequenceArea2.setColumns(20);
         proteinSequenceArea2.setFont(new java.awt.Font("Monospaced", 0, 20)); // NOI18N
         proteinSequenceArea2.setRows(3);
+        proteinSequenceArea2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                proteinSequenceArea2MouseMoved(evt);
+            }
+        });
         jScrollPane4.setViewportView(proteinSequenceArea2);
 
         annotationPanelToggle.setText("Toggle");
+        annotationPanelToggle.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                annotationPanelToggleMouseMoved(evt);
+            }
+        });
         annotationPanelToggle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 annotationPanelToggleActionPerformed(evt);
@@ -115,6 +150,11 @@ public class CreateGUI extends javax.swing.JFrame {
         });
 
         proteinAreaToggle.setText("Toggle");
+        proteinAreaToggle.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                proteinAreaToggleMouseMoved(evt);
+            }
+        });
         proteinAreaToggle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 proteinAreaToggleActionPerformed(evt);
@@ -122,11 +162,20 @@ public class CreateGUI extends javax.swing.JFrame {
         });
 
         nucleotideAreaToggle.setText("Toggle");
+        nucleotideAreaToggle.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                nucleotideAreaToggleMouseMoved(evt);
+            }
+        });
         nucleotideAreaToggle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nucleotideAreaToggleActionPerformed(evt);
             }
         });
+
+        hoverBar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        hoverBar.setBorder(null);
+        hoverBar.setOpaque(false);
 
         jMenu1.setText("File");
 
@@ -304,6 +353,7 @@ public class CreateGUI extends javax.swing.JFrame {
                     .addComponent(nucleotideAreaToggle)
                     .addComponent(annotationPanelToggle))
                 .addContainerGap())
+            .addComponent(hoverBar, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,8 +378,9 @@ public class CreateGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(hoverBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -605,17 +656,52 @@ public class CreateGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_annotationPanelToggleActionPerformed
 
+    
+    // set information to hoverBar 
     private void proteinSequenceArea1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proteinSequenceArea1MouseClicked
-        /*
-         *We don't know how to remove this function, we do not intend to use it at this time.
-         */
+
     }//GEN-LAST:event_proteinSequenceArea1MouseClicked
 
     private void proteinSequenceArea1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proteinSequenceArea1MouseDragged
-        /*
-         *We don't know how to remove this function, we do not intend to use it at this time.
-         */
+        hoverBar.setText("select sequence and click create annotation");
     }//GEN-LAST:event_proteinSequenceArea1MouseDragged
+
+    private void annotationAreaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_annotationAreaMouseEntered
+        hoverBar.setText("");
+    }//GEN-LAST:event_annotationAreaMouseEntered
+
+    private void annotationPanelToggleMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_annotationPanelToggleMouseMoved
+        hoverBar.setText("Toggle gene information");
+    }//GEN-LAST:event_annotationPanelToggleMouseMoved
+
+    private void proteinAreaToggleMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proteinAreaToggleMouseMoved
+        hoverBar.setText("Toggle sequence information");
+    }//GEN-LAST:event_proteinAreaToggleMouseMoved
+
+    private void nucleotideAreaToggleMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nucleotideAreaToggleMouseMoved
+        hoverBar.setText("Toggle sequence information");
+    }//GEN-LAST:event_nucleotideAreaToggleMouseMoved
+
+    private void proteinSequenceArea1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proteinSequenceArea1MouseMoved
+        hoverBar.setText("select sequence and click create annotation");
+    }//GEN-LAST:event_proteinSequenceArea1MouseMoved
+
+    private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
+        hoverBar.setText("");
+    }//GEN-LAST:event_formMouseMoved
+
+    private void proteinSequenceArea2MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proteinSequenceArea2MouseMoved
+        hoverBar.setText("select sequence and click create annotation");
+    }//GEN-LAST:event_proteinSequenceArea2MouseMoved
+
+    private void nucleotideSequenceAreaMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nucleotideSequenceAreaMouseMoved
+        hoverBar.setText("sequence");
+    }//GEN-LAST:event_nucleotideSequenceAreaMouseMoved
+
+    private void annotationAreaMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_annotationAreaMouseMoved
+        hoverBar.setText("Gene annotation");
+    }//GEN-LAST:event_annotationAreaMouseMoved
+    //end information hoverBar
     
     public static void createAnnotation(String annotationSeq, String annotationType, String annotationName){
         /*
@@ -669,6 +755,7 @@ public class CreateGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem deleteSelAnnotations;
     private javax.swing.JMenuItem fileChooser;
     private javax.swing.JMenuItem highlightSeqGC;
+    private javax.swing.JTextField hoverBar;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
