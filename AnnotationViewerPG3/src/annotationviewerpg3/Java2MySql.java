@@ -2,6 +2,11 @@ package annotationviewerpg3;
 
 import java.sql.*;
 
+/**
+ * This class will be used to create a connection with the database, as soon as we figure out how to make one without the user having to activate
+ * external programs. 
+ */
+
 public class Java2MySql {
 
     public static void main(String[] args) {

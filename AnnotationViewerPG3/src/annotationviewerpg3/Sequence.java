@@ -1,40 +1,45 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package annotationviewerpg3;
 
 import java.util.HashMap;
 
 /**
- *.
- * @author Rowan
+ * This class functions to create Sequence objects, which will be used to contain information as soon as we get the database up and running. 
  */
 public class Sequence {
     String complete_sequence;
     String organism_name;
     
     public String setSequence(String sequence, String organism){
+        /*
+         * This function will allow the creation of a Sequence object, with associated sequence and organism variables.
+         */
         this.complete_sequence = sequence;
         this.organism_name = organism;
         return null;
     }
     
     public String getSequence(int sequence_id){
-        
+        /*
+         * This function will allow the user to retrieve the associated sequence variable from a Sequence object.
+         */
         String sequence = null;
         
         return sequence;
     }
     
     public String getOrganism(int sequence_id){
-        
+        /*
+         * This function will allow the user to retrieve the associated organism variable from a Sequence object.
+         */
         String organism = null;
         
         return organism;
     }
     public static String getTranslation(String sequence){
+        /*
+         * This function returns the protein translation from a received nucleotide sequence.
+         */
         int counter = 0;
         String[] seqArray = sequence.split("");
         String seq = "";

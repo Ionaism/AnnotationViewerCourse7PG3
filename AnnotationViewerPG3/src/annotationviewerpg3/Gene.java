@@ -6,8 +6,7 @@
 package annotationviewerpg3;
 
 /**
- *.
- * @author Rowan
+ * This class functions to create Gene objects, which will be used to contain information as soon as we get the database up and running. 
  */
 public class Gene extends Annotation {
     

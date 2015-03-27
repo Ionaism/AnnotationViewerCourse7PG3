@@ -6,14 +6,13 @@
 package annotationviewerpg3;
 
 /**
- *.
- * @author Rowan
+ * This class functions to create DNA objects, which will be used to contain information as soon as we get the database up and running. 
  */
 public class DNA extends Sequence{
     public static String getComplement(String seq) {
-       // int sequence_id = 0;
-       // String seq = this.getSequence(sequence_id);
-        int counter = 0;
+        /*
+         * This function returns the complement sequence of an input nucleotide sequence.
+         */
         seq = seq.replace("A", "1");
         seq = seq.replace("G", "2");
         seq = seq.replace("T", "A");

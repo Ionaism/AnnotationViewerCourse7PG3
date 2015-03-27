@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package annotationviewerpg3;
 
 import java.awt.Component;
@@ -12,18 +8,17 @@ import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
- * .
- * @author Rowan
+ *This class functions to create the main interface of the application. Functions of all the buttons and fields in this interface are defined in this class.
  */
 public class CreateGUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form CreateGUI
-     */
     private JFileChooser fileChoose;
     private Component frame;
 
     public CreateGUI() {
+        /*
+         *This function initiates the creation of the GUI.
+         */
         initComponents();
     }
 
@@ -341,6 +336,11 @@ public class CreateGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void fileChooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileChooserActionPerformed
+        /*
+         *This function allows the user to load in a FASTA file containing a nucleotide sequence. The sequence is then read from the file,
+         *and translated to a protein sequence in 6 frames by usage of the getTranslation function in the Sequence class. These protein 
+         *sequences, and the nucleotide sequence, are made visible in text areas in the GUI.
+         */
         File selectedFile;
         int reply;
         BufferedReader inFile;
@@ -383,6 +383,9 @@ public class CreateGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_fileChooserActionPerformed
 
     private void saveEntryDatabaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveEntryDatabaseActionPerformed
+        /*
+         *This function will allow the user to save the currently viewed sequence in the database, along with the created annotations.
+         */
         JOptionPane.showMessageDialog(frame,
                 "Buy the full version to use this feature!",
                 "Save Entries into Database",
@@ -390,6 +393,9 @@ public class CreateGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_saveEntryDatabaseActionPerformed
 
     private void preferencesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_preferencesActionPerformed
+        /*
+         *This function will allow the user to alter his or her preferences for the application.
+         */
         JOptionPane.showMessageDialog(frame,
                 "Buy the full version to use this feature!",
                 "Preferences",
@@ -397,6 +403,9 @@ public class CreateGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_preferencesActionPerformed
 
     private void undoActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoActionActionPerformed
+        /*
+         *This function will allow the user to undo his or her last action.
+         */
         JOptionPane.showMessageDialog(frame,
                 "Buy the full version to use this feature!",
                 "Undo Action",
@@ -404,7 +413,10 @@ public class CreateGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_undoActionActionPerformed
 
     private void createAnnotationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAnnotationActionPerformed
-        //Verkrijgen van de gemarkeerde tekst in de tekstarea.
+        /*
+         *This function allows the user to create an annotation, by way of a seperate GUI. If a part of a protein sequence is highlighted in 
+         *the designated text areas, this sequence will be automatically filled in in this GUI.
+         */
         String selectedSeq = proteinSequenceArea1.getSelectedText();
         if (selectedSeq == null) {
             selectedSeq = proteinSequenceArea2.getSelectedText();
@@ -413,6 +425,9 @@ public class CreateGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_createAnnotationActionPerformed
 
     private void viewSelAnnotationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewSelAnnotationsActionPerformed
+        /*
+         *This function will allow the user to only view the selected annotations.
+         */
         JOptionPane.showMessageDialog(frame,
                 "Buy the full version to use this feature!",
                 "View Selected Annotations",
@@ -420,10 +435,16 @@ public class CreateGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_viewSelAnnotationsActionPerformed
 
     private void closeViewerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeViewerActionPerformed
+        /*
+         *This function allows the user to close the application.
+         */
         System.exit(0);
     }//GEN-LAST:event_closeViewerActionPerformed
 
     private void openHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openHelpActionPerformed
+        /*
+         *This function allows the user to read the help file.
+         */
         JOptionPane.showMessageDialog(frame,
                 "Read the manual!",
                 "Help",
@@ -431,6 +452,9 @@ public class CreateGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_openHelpActionPerformed
 
     private void highlightSeqGCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_highlightSeqGCActionPerformed
+        /*
+         *This function allows the user to calculate the GC% of a highlighted part of the nucleotide sequence in the designated text area.
+         */
         try {
             String highlightSeq = (nucleotideSequenceArea.getSelectedText()).toUpperCase();
             if (highlightSeq.matches("[ATGC]+") == true){
@@ -459,7 +483,9 @@ public class CreateGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_highlightSeqGCActionPerformed
 
     private void useBLASTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_useBLASTActionPerformed
-        //link naar de blast
+        /*
+         *This function allows the user to BLAST their sequence.
+         */
         try {
             
          String url = "http://blast.ncbi.nlm.nih.gov/Blast.cgi";
@@ -471,6 +497,9 @@ public class CreateGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_useBLASTActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        /*
+        We have no idea why this function exists, but we can't remove it so, so we dealt with it.
+        */
         JOptionPane.showMessageDialog(frame,
                 "Buy the full version to use this feature!",
                 "Redo Action",
@@ -478,6 +507,9 @@ public class CreateGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void deleteSelAnnotationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteSelAnnotationsActionPerformed
+        /*
+         *This function will allow the user to delete all selected annotations.
+         */
         JOptionPane.showMessageDialog(frame,
                 "Buy the full version to use this feature!",
                 "Delete Selected Annotations",
@@ -486,6 +518,9 @@ public class CreateGUI extends javax.swing.JFrame {
 
 
     private void proteinAreaToggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_proteinAreaToggleActionPerformed
+        /*
+         *This function allows the user to remove or add the text areas containing the protein sequences from view.
+         */
         if (proteinSequenceArea1.isVisible() == true){
             proteinSequenceArea1.setVisible(false);
             proteinSequenceArea2.setVisible(false);
@@ -497,6 +532,9 @@ public class CreateGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_proteinAreaToggleActionPerformed
 
     private void nucleotideAreaToggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nucleotideAreaToggleActionPerformed
+        /*
+         *This function allows the user to remove or add the text area containing the nucleotide sequences from view.
+         */
         if (nucleotideSequenceArea.isVisible() == true){
             nucleotideSequenceArea.setVisible(false);
         }
@@ -506,13 +544,19 @@ public class CreateGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_nucleotideAreaToggleActionPerformed
 
     private void viewNonSelAnnotationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewNonSelAnnotationsActionPerformed
-       JOptionPane.showMessageDialog(frame,
+        /*
+         *This function will allow the user to only view the annotations that are not selected.
+         */
+        JOptionPane.showMessageDialog(frame,
                 "Buy the full version to use this feature!",
                 "View Non Selected Annotations",
                 JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_viewNonSelAnnotationsActionPerformed
 
     private void saveFASTAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveFASTAActionPerformed
+        /*
+         *This function will allow the user to save sequences in a FASTA file format.
+         */
         JOptionPane.showMessageDialog(frame,
                 "Buy the full version to use this feature!",
                 "Save as FASTA",
@@ -520,6 +564,9 @@ public class CreateGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_saveFASTAActionPerformed
 
     private void saveGFFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveGFFActionPerformed
+        /*
+         *This function will allow the user to save sequences in a GFF file format.
+         */
         JOptionPane.showMessageDialog(frame,
                 "Buy the full version to use this feature!",
                 "Save as GFF",
@@ -527,6 +574,9 @@ public class CreateGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_saveGFFActionPerformed
 
     private void saveGenbankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveGenbankActionPerformed
+        /*
+         *This function will allow the user to save sequences in a Genbank file format.
+         */
         JOptionPane.showMessageDialog(frame,
                 "Buy the full version to use this feature!",
                 "Save as Genbank",
@@ -534,6 +584,9 @@ public class CreateGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_saveGenbankActionPerformed
 
     private void redoActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redoActionActionPerformed
+        /*
+         *This function will allow the user to redo an action that was undone previously.
+         */
         JOptionPane.showMessageDialog(frame,
                 "Buy the full version to use this feature!",
                 "Redo Action",
@@ -541,6 +594,9 @@ public class CreateGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_redoActionActionPerformed
 
     private void annotationPanelToggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_annotationPanelToggleActionPerformed
+        /*
+         *This function allows the user to remove or add the text area containing the annotations from view.
+         */
         if (annotationArea.isVisible() == true){
             annotationArea.setVisible(false);
         }
@@ -550,14 +606,21 @@ public class CreateGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_annotationPanelToggleActionPerformed
 
     private void proteinSequenceArea1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proteinSequenceArea1MouseClicked
-        // TODO add your handling code here:
+        /*
+         *We don't know how to remove this function, we do not intend to use it at this time.
+         */
     }//GEN-LAST:event_proteinSequenceArea1MouseClicked
 
     private void proteinSequenceArea1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proteinSequenceArea1MouseDragged
-        // TODO add your handling code here:
+        /*
+         *We don't know how to remove this function, we do not intend to use it at this time.
+         */
     }//GEN-LAST:event_proteinSequenceArea1MouseDragged
     
     public static void createAnnotation(String annotationSeq, String annotationType, String annotationName){
+        /*
+         *This function adds the created annotations (that were created in a seperate GUI) to the main GUI, in a text area.
+         */
         annotationArea.append("\n" + annotationType + " - " + annotationName + " - " + annotationSeq);
     }
 
