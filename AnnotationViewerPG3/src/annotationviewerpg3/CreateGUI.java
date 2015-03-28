@@ -378,9 +378,9 @@ public class CreateGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(hoverBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(hoverBar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -671,15 +671,15 @@ public class CreateGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_annotationAreaMouseEntered
 
     private void annotationPanelToggleMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_annotationPanelToggleMouseMoved
-        hoverBar.setText("Toggle gene information");
+        hoverBar.setText("remove or add the text area containing the annotations from view");
     }//GEN-LAST:event_annotationPanelToggleMouseMoved
 
     private void proteinAreaToggleMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proteinAreaToggleMouseMoved
-        hoverBar.setText("Toggle sequence information");
+        hoverBar.setText("remove or add the text areas containing the protein sequences from view");
     }//GEN-LAST:event_proteinAreaToggleMouseMoved
 
     private void nucleotideAreaToggleMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nucleotideAreaToggleMouseMoved
-        hoverBar.setText("Toggle sequence information");
+        hoverBar.setText("remove or add the text area containing the nucleotide sequences from view");
     }//GEN-LAST:event_nucleotideAreaToggleMouseMoved
 
     private void proteinSequenceArea1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proteinSequenceArea1MouseMoved
