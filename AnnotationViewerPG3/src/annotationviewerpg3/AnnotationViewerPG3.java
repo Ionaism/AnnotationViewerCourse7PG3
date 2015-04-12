@@ -9,8 +9,10 @@
  *This application is not completed, and is at the moment only meant as a proof of concept.
  *
  *Currently known bugs: 
- *When a part of a sequence is highlighted in a text area, and if one wants to highlight a sequence in a different area, you have to make sure you
+ * 1. When a part of a sequence is highlighted in a text area, and if one wants to highlight a sequence in a different area, you have to make sure you
  *de-highlight the sequence in the first text area. Otherwise the selected highlight will be the former highlighted sequence.
+ *
+ * 2. The database can only be connected to with a localhost, which means it requires a program like XAMPP to work. 
  */
 package annotationviewerpg3;
 
